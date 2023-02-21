@@ -1,7 +1,3 @@
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket = var.bucket
-}
-
 resource "aws_iam_role" "s3_iam" {
   name = "s3_iam_role"
 
@@ -21,9 +17,9 @@ resource "aws_iam_role" "s3_iam" {
 EOF
 }
 resource "aws_codebuild_project" "storage_bucket"{
-  name          = var.project_name
-  build_timeout = var.timeout
- service_role  = aws_iam_role.s3_iam.arn
+name          = var.project_name
+build_timeout = var.timeout
+service_role  = aws_iam_role.s3_iam.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
@@ -33,18 +29,9 @@ resource "aws_codebuild_project" "storage_bucket"{
     compute_type                = var.compute
     image                       = var.image
     type                        = var.type
-    
   }
 
-
-
- source {
-   type            = "GITHUB"
-    location="https://github.com/mitchellh/packer.git"
- }
-
-
-  source_version = "main"
-
-
+source {
+   type            = var.codebuild_source_type
+  }
 }

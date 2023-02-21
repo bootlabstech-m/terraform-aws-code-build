@@ -9,7 +9,7 @@ variable "compute" {
 }
 
 variable "image" {
-  description = "Image "
+  description = "Image"
   type        = string
 }
 
@@ -30,7 +30,8 @@ variable "timeout"{
   description="Timeout"
   type=string
 }
-variable "bucket"{
-  description="bucket"
+
+variable "codebuild_source_type"{
+  description="codebuild_source_type"
   type=string
 }
