@@ -20,6 +20,7 @@ resource "aws_codebuild_project" "storage_bucket"{
 name          = var.project_name
 build_timeout = var.timeout
 service_role  = aws_iam_role.s3_iam_code_build.arn
+location      = var.location
 
   artifacts {
     type = "NO_ARTIFACTS"

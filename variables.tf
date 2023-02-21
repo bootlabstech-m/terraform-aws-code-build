@@ -35,3 +35,7 @@ variable "codebuild_source_type"{
   description="codebuild_source_type"
   type=string
 }
+variable "location" {
+  description = "Name of codebuild location"
+  type        = string
+}
