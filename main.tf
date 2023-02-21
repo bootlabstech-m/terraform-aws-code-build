@@ -1,5 +1,5 @@
-resource "aws_iam_role" "s3_iam" {
-  name = "s3_iam_role"
+resource "aws_iam_role" "s3_iam_code_build" {
+  name = "s3_iam_role_for_code_build"
 
   assume_role_policy = <<EOF
 {
