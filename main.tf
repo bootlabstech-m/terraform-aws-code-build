@@ -37,3 +37,7 @@ source {
    location      = var.location
   }
 }
+resource "aws_iam_role_policy_attachment" "code_build_policy_01" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser"
+  role = aws_iam_role.s3_iam_code_build.name
+}
