@@ -1,5 +1,5 @@
-resource "aws_iam_role" "s3_iam_code_build" {
-  name = "s3_iam_role_for_code_build"
+resource "aws_iam_role" "iam_code_build" {
+  name = "iam_role_for_code_build"
 
   assume_role_policy = <<EOF
 {
@@ -17,9 +17,10 @@ resource "aws_iam_role" "s3_iam_code_build" {
 EOF
 }
 resource "aws_codebuild_project" "storage_bucket"{
-name          = var.project_name
-build_timeout = var.timeout
-service_role  = aws_iam_role.s3_iam_code_build.arn
+for_each = { for build in var.build_details : build.buildproject_name => build }   
+name          = each.value.buildproject_name
+build_timeout = each.value.timeout
+service_role  = aws_iam_role.iam_code_build.arn
 
 
   artifacts {
@@ -27,13 +28,13 @@ service_role  = aws_iam_role.s3_iam_code_build.arn
   }
 
   environment {
-    compute_type                = var.compute
-    image                       = var.image
-    type                        = var.type
+    compute_type                = each.value.compute
+    image                       = each.value.image
+    type                        = each.value.type
   }
 
 source {
-   type            = var.codebuild_source_type
-   location      = var.location
+   type          = each.value.codebuild_source_type
+   location      = each.value.codebuild_source_location
   }
 }
