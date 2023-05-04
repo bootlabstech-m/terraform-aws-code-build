@@ -31,10 +31,19 @@ service_role  = aws_iam_role.iam_code_build.arn
     compute_type                = each.value.compute
     image                       = each.value.image
     type                        = each.value.type
+    privileged_mode             = var.privileged_mode
   }
 
 source {
    type          = each.value.codebuild_source_type
    location      = each.value.codebuild_source_location
   }
+}
+
+lifecycle {
+  ignore_changes = [
+    # Ignore changes to tags, e.g. because a management agent
+    # updates these based on some ruleset managed elsewhere.
+    tags,
+  ]
 }

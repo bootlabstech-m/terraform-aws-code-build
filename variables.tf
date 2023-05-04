@@ -17,15 +17,22 @@
 #   description = "Type of environment"
 #   type        = string
 # }
+variable "privileged_mode" {
+  description = "Whether to enable running the Docker daemon inside a Docker container."
+  type = bool
+  default = false
+}
+
 variable "build_details" {
   description = "Description of code build"
   type = list (any)
   
 }
-variable "role_arn" {
-  description = "Role ARN"
-  type        = string
-}
+
+# variable "role_arn" {
+#   description = "Role ARN"
+#   type        = string
+# }
 
 variable "region"{
   description="Region"
