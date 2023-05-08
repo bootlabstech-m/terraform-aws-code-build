@@ -31,6 +31,7 @@ service_role  = aws_iam_role.iam_code_build.arn
     compute_type                = each.value.compute
     image                       = each.value.image
     type                        = each.value.type
+    privileged_mode             = each.value.privileged_mode
   }
 
 source {
