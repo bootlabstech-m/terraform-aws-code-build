@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_code_build" {
-  name = "iam_role_for_code_build"
+  name = var.code_build_role_name
 
   assume_role_policy = <<EOF
 {

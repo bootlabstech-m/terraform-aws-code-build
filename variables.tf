@@ -28,9 +28,14 @@ variable "role_arn" {
 }
 
 variable "region"{
-  description="Region"
-  type=string
+  description = "Region"
+  type = string
 }
+variable "code_build_role_name"{
+  description="code_build_role_name"
+  type = string
+}
+
 # variable "timeout"{
 #   description="Timeout"
 #   type=string
