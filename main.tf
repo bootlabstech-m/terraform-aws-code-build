@@ -15,6 +15,9 @@ resource "aws_iam_role" "iam_code_build" {
   ]
 }
 EOF
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 resource "aws_codebuild_project" "storage_bucket"{
 for_each = { for build in var.build_details : build.buildproject_name => build }   
@@ -37,5 +40,8 @@ service_role  = aws_iam_role.iam_code_build.arn
 source {
    type          = each.value.codebuild_source_type
    location      = each.value.codebuild_source_location
+  }
+    lifecycle {
+    ignore_changes = [tags]
   }
 }
