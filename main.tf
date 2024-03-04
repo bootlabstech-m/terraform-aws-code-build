@@ -42,6 +42,6 @@ source {
    location      = each.value.codebuild_source_location
   }
     lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [tags,source,source_version]
   }
 }
